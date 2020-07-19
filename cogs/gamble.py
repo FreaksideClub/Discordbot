@@ -8,12 +8,12 @@ class Gamble(commands.Cog):
     @commands.command(brief="Give a random number between 1 and 100")
     async def roll(self, ctx):
         n = random.randrange(1, 101)
-        await ctx.send("n")
+        await ctx.send(n)
 
     @commands.command(brief="random number between 1 and 6")
     async def dice(self, ctx):
         n = random.randrange(1, 6)
-        await ctx.send("n")
+        await ctx.send(n)
 
     @commands.command(brief="Either Heads or Tails")
     async def coin(self, ctx):
