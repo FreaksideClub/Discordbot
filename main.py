@@ -1,9 +1,11 @@
-import os
-import config.settings
+from settings import *
+import discord
 from discord.ext import commands
 
 #Bot Prefix
 bot = commands.Bot(command_prefix="!")
+client = discord.Client()
+
 
 #Commands Loading
 for filename in os.listdir("./cogs"):
@@ -11,4 +13,4 @@ for filename in os.listdir("./cogs"):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
 #Bot Token
-bot.run(config.settings.BOT_TOKEN)
+bot.run(DISCORD_BOT_TOKEN)
