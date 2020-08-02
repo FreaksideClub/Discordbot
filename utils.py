@@ -5,6 +5,8 @@ from settings import *
 
 auto_voice_channel_names = ['Silence', 'Iron Victory', 'Leviathan', 'Kraken\'s Kiss', 'Reaper\'s Wind', 'Black Wind', ' Sea Bitch', 'Silence', 'Noble Lady', 'Red God\'s Wrath', 'Shrike', 'Shade', 'Ghost', 'Slaver\'s Scream', 'Sea Song', 'Thunderer', 'Nighflyer', 'Silverfin', 'Black Wind', 'Great Kraken']
 
+
+
 async def create_voice_channel(guild, channel_name, category_name="𝕍𝕆𝕀ℂ𝔼 ℂℍ𝔸ℕℕ𝔼𝕃𝕊", user_limit=None):
     """
     Creates a new channel in the category "Game"
