@@ -11,4 +11,7 @@ if DEBUG:
     from config.development import *
 else:
     print("We are in production")
+    from pathlib import Path
+    env_path = Path(".") / ".env"
+    load_dotenv(dotenv_path=env_path)
     from config.product import *

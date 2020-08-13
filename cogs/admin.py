@@ -90,7 +90,7 @@ class Admin(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members = True)
     @commands.bot_has_permissions(manage_messages = True)
-    async def purge(self, ctx, *limit):
+    async def purge(ctx, *limit):
         '''Deletes multiple messages at once (ADMIN ONLY)
         Example:
         -----------
@@ -111,7 +111,6 @@ class Admin(commands.Cog):
         tmp = await ctx.send(f'**:put_litter_in_its_place:** {deleted} Messages deleted')
         await asyncio.sleep(15)
         await tmp.delete()
-        await ctx.message.delete()
 
 
 def setup(bot):

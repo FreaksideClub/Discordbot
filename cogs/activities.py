@@ -1,8 +1,12 @@
+import asyncio
+
+from discord import channel, guild
 from discord.ext import commands
 import discord
 from random import choice
 from utils import create_voice_channel, get_category_by_name
-from utils import auto_voice_channel_names as channel_names
+from config.config import auto_voice_channel_names as channel_names
+
 
 class Activities(commands.Cog):
 
@@ -11,6 +15,7 @@ class Activities(commands.Cog):
     def __init__(self, bot):
         self.created_channels = []
         self.bot = bot
+
 
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
@@ -30,7 +35,7 @@ class Activities(commands.Cog):
             print(f'{after.name} started {after.activities[0].name}')
 
     @commands.Cog.listener()
-    async def on_voice_state_update(self, member, before, after, auto_voice_channel="Get a Voice"):
+    async def on_voice_state_update(self, member, before, after, auto_voice_channel="📢Get a Voice"):
         if member.bot:
             return
 
