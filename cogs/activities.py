@@ -1,21 +1,15 @@
-import asyncio
-
-from discord import channel, guild
 from discord.ext import commands
-import discord
 from random import choice
-from utils import create_voice_channel, get_category_by_name
+from utils import create_voice_channel
 from config.config import auto_voice_channel_names as channel_names
 
 
 class Activities(commands.Cog):
-
-    current_streamers = list ()
+    current_streamers = list()
 
     def __init__(self, bot):
         self.created_channels = []
         self.bot = bot
-
 
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
@@ -76,6 +70,7 @@ class Activities(commands.Cog):
             if len(before.channel.members) == 0:
                 print("channel is now empty")
                 await before.channel.delete()
+
 
 def setup(bot):
     bot.add_cog(Activities(bot))

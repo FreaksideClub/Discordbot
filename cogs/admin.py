@@ -1,26 +1,20 @@
 import asyncio
-from discord import Embed
 from discord.ext import commands
 import discord
+
 
 def is_not_pinned(mess):
     return not mess.pinned
 
-def mods_or_owner():
-    def predicate(ctx):
-        return commands.check_any(commands.is_owner(),
-                                  commands.has_role("Moderator"))
-    return commands.check(predicate)
 
 class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
     # Stats about server
     @commands.command()
-    @commands.has_permissions(ban_members = True)
-    @commands.bot_has_permissions(manage_messages = True)
+    @commands.has_permissions(ban_members=True)
+    @commands.bot_has_permissions(manage_messages=True)
     async def server(self, ctx):
         """Various info about the server."""
         guild = ctx.guild
@@ -46,16 +40,18 @@ class Admin(commands.Cog):
         em.add_field(name='Number of emotes', value=str(emoji_count))
         em.add_field(name='Created At', value=guild.created_at.__format__('%A, %d. %B %Y @ %H:%M:%S'))
         em.set_thumbnail(url=guild.icon_url)
-        em.set_author(name='Server Info', icon_url='https://cdn.discordapp.com/icons/683039641758335123/a_5805c254b2c91e7e2bac70f96632dab7.gif')
+        em.set_author(name='Server Info',
+                      icon_url='https://cdn.discordapp.com/icons/558732591679668233/ef633304894c85044bfa9c1ea6e44adf.png')
         em.set_footer(text='Server ID: %s' % guild.id)
-        em.set_footer(text='RAW-Bot made by RAW-Team')
+        em.set_footer(text='FSC-Bot made by ExiWexi')
         await ctx.send(embed=em)
 
-
+        await asyncio.slepp(2)
+        await ctx.message.delete()
 
     @commands.command()
-    @commands.has_permissions(ban_members = True)
-    @commands.bot_has_permissions(manage_messages = True)
+    @commands.has_permissions(ban_members=True)
+    @commands.bot_has_permissions(manage_messages=True)
     async def userinfo(self, ctx, member):
         """Get user info. Ex: !userinfo @user"""
         if ctx.invoked_subcommand is None:
@@ -79,18 +75,18 @@ class Admin(commands.Cog):
                 em.add_field(name='Account Created', value=name.created_at.__format__('%A, %d. %B %Y @ %H:%M:%S'))
                 em.add_field(name='Join Date', value=name.joined_at.__format__('%A, %d. %B %Y @ %H:%M:%S'))
                 em.set_thumbnail(url=name.avatar_url)
-                em.set_author(name=name, icon_url='https://cdn.discordapp.com/icons/683039641758335123/a_5805c254b2c91e7e2bac70f96632dab7.gif')
-                em.set_footer(text='RAW-Bot made by RAW-Team')
+                em.set_author(name=name,
+                              icon_url='https://cdn.discordapp.com/icons/558732591679668233/ef633304894c85044bfa9c1ea6e44adf.png')
+                em.set_footer(text='FSC-Bot made by ExiWexi')
                 await ctx.send(embed=em)
 
             await asyncio.sleep(2)
             await ctx.message.delete()
 
-
     @commands.command()
-    @commands.has_permissions(ban_members = True)
-    @commands.bot_has_permissions(manage_messages = True)
-    async def purge(ctx, *limit):
+    @commands.has_permissions(ban_members=True)
+    @commands.bot_has_permissions(manage_messages=True)
+    async def purge(self, ctx, *limit):
         '''Deletes multiple messages at once (ADMIN ONLY)
         Example:
         -----------
@@ -111,7 +107,7 @@ class Admin(commands.Cog):
         tmp = await ctx.send(f'**:put_litter_in_its_place:** {deleted} Messages deleted')
         await asyncio.sleep(15)
         await tmp.delete()
-
+        await ctx.message.delete()
 
 def setup(bot):
     bot.add_cog(Admin(bot))

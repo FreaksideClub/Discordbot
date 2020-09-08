@@ -5,11 +5,10 @@ class Setup(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
     @commands.command()
-    @commands.has_permissions(ban_members = True)
-    @commands.bot_has_permissions(manage_messages = True)
-    async def setup(self, ctx):
+    @commands.has_permissions(ban_members=True)
+    @commands.bot_has_permissions(manage_messages=True)
+    async def setup_voice(self, ctx):
         try:
             await ctx.send("Please wait!")
             await ctx.send("Create category 🎤 VOICE ZONE 🎤")
@@ -19,7 +18,6 @@ class Setup(commands.Cog):
             await ctx.send("Setup finished!")
         except Exception as errors:
             print(f"Bot Error: {errors}")
-
 
 
 def setup(bot):
