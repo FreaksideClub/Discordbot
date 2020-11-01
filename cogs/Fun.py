@@ -28,6 +28,12 @@ class Fun(commands.Cog):
             if not arg:
                 start = 1
                 end = 100
+            elif arg[0] == 'd6':
+              start = 1
+              end = 6
+            elif arg[0] == 'd20':
+              start = 1
+              end = 20
             elif arg[0] == 'flip' or arg[0] == 'coin':
                 coin = ['Head', 'Tails']
                 await ctx.send(f':arrows_counterclockwise: {random.choice(coin)}')
